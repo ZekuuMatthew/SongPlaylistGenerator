@@ -6,6 +6,16 @@
 
 }
 
+a {
+    text-decoration: none;
+    color: inherit; /* Optional: keeps link color as set by parent or inline */
+}
+
+a:hover {
+    color: #1ED760; /* Optional hover color */
+}
+
+
 .navbar {
     background: #131313;
     height: 90px;
@@ -194,6 +204,8 @@
     }
 }
 
+/*  Main Section  */
+
 .main {
     background-color: #000;
 }
@@ -221,25 +233,35 @@
     -moz-background-clip: text;
     -webkit-text-fill-color: transparent;
     -moz-text-fill-color: transparent;
+    align-items: center;
+    justify-self: center;
+    text-align: center;
 }
 
 .main__content h2 {
-    font-size: 4rem;
+    font-size: 2rem;
     background-color: #1DB954;
     background-image: linear-gradient(to top, #1ED760 0%,#21d4fd 100%);
     background-size: 100%;
+    font-weight: 500;
     -webkit-background-clip: text;
     -moz-background-clip: text;
     -webkit-text-fill-color: transparent;
     -moz-text-fill-color: transparent;
+    align-items: center;
+    justify-self: center;
+    text-align: center;
 }
 
-.main__content p {
-    margin-top: 1rem;
-    font-size: 2rem;
-    font-weight: 700;
-    color: #1db954;
+.main__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers elements horizontally */
+    justify-content: center; /* Centers elements vertically */
+    text-align: center;
+    margin-top: 2rem; /* Adds space from the top, if needed */
 }
+
 
 .main__btn {
     font-size: 1rem;
@@ -253,6 +275,9 @@
     position: relative;
     transition: all 0.3s;
     outline: none;
+    align-items: center;
+    justify-self: center;
+    text-align: center;
 }
 
 .main__btn a {
@@ -260,6 +285,9 @@
     z-index: 2;
     color: #fff;
     text-decoration: none;
+    align-items: center;
+    justify-self: center;
+    text-align: center;
 }
 
 .main__btn:after {
@@ -367,24 +395,27 @@
 }
 
 .services h1 {
-    background-color: #b8e994;
+    background-color: #fff;
+    text-decoration: none;
     background-image: linear-gradient(
     to right, 
     #b8e994 0%, 
-    #a3d977 20%, 
+    
+    /*#a3d977 20%, 
     #8bc34a 40%, 
     #66bb6a 60%, 
     #4caf50 80%, 
-    #388e3c 100%
+    #388e3c 100%*/
 );
     background-size: 100%;
-    margin-bottom: 5rem;
+    margin-bottom: 1.2rem;
     font-size: 2.5rem;
     -webkit-background-clip: text;
     -moz-background-clip: text;
     -webkit-text-fill-color: transparent;
     -moz-text-fill-color: transparent;
 }
+
 
 .services__container {
     display: flex;
@@ -401,10 +432,16 @@
         to bottom, 
         rgba(0,0,0,0) 0%, 
         rgba(17, 17, 17, 0.6) 100%
-        ), url('/images/tayswift.png');
+    ), url('/images/tayswift.png');
     background-size: cover;
+    background-position: center;
     position: relative;
     color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .services__card:nth-child(2) {
@@ -413,6 +450,8 @@
         rgba(0,0,0,0) 0%, 
         rgba(17, 17, 17, 0.6) 100%
         ), url('/images/keshi.jpeg');
+        background-size: cover;
+        background-position: center;
 }
 
 .services__card:nth-child(3) {
@@ -421,6 +460,8 @@
         rgba(0,0,0,0) 0%, 
         rgba(17, 17, 17, 0.6) 100%
         ), url('/images/drakenew.jpg');
+        background-size: cover;
+        background-position: center;
 }
 
 .services__card:nth-child(4) {
@@ -429,6 +470,8 @@
         rgba(0,0,0,0) 0%, 
         rgba(17, 17, 17, 0.6) 100%
         ), url('/images/travypatty.webp');
+        background-size: cover;
+        background-position: center;
 }
 
 .services__card:nth-child(5) {
@@ -437,6 +480,8 @@
         rgba(0,0,0,0) 0%, 
         rgba(17, 17, 17, 0.6) 100%
         ), url('/images/juice.webp');
+    background-size: cover;
+    background-position: center;
 }
 
 .services__card:nth-child(6) {
@@ -445,34 +490,42 @@
         rgba(0,0,0,0) 0%, 
         rgba(17, 17, 17, 0.6) 100%
         ), url('/images/cutie.jpg');
+        background-size: cover;
+        background-position: center;
 }
 
 
 
-.services h2 {
+.services__card h2 {
     position: absolute;
     top: 350px;
-    left: 20px;
+    left: 50%; /* Moves the element to the center horizontally */
+    transform: translateX(-50%); /* Centers the element by moving it left by half of its width */
+    margin: 0.5rem 0; 
+    text-align: center;
 }
 
 .services__card p {
     position: absolute;
     top: 400px;
-    left: 30px;
+    left: 50%; /* Moves the element to the center horizontally */
+    transform: translateX(-50%); /* Centers the element by moving it left by half of its width */
+    text-align: center;
 }
 
+
 .services__card button {
-    color: #fff;
     padding: 10px 20px;
     border: none;
     outline: none;
     border-radius: 4px;
     background: #1ED760;
-    position: absolute;
-    top: 440px;
-    left: 30px;
+    color: #fff;
     font-size: 1rem;
     cursor: pointer;
+    text-align: center;
+    margin-top: 450px; /* Pushes button to the bottom */
+    align-self: center; /* Centers button horizontally */
 }
 
 .services__card:hover {
@@ -500,15 +553,21 @@
         font-size: 1.2rem;
     }
 
+    services__card {
+        width: calc(100% / 2 - 1rem); /* Two cards per row on medium screens */
+    }
+}
+
+@media screen and (max-width: 480px) {
     .services__card {
-        width: 300px;
+        width: 100%; /* Full width on small screens */
     }
 }
 
 /* Footer CSS */
 .footer__container {
     background-color: #000;
-    padding: 5rem 0;
+    padding: 4rem 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -538,9 +597,9 @@
 .footer__link--items {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    margin: 16px;
-    text-align: left;
+    align-items: center;
+    margin: 30px;
+    text-align: center;
     width: 160px;
     box-sizing: border-box;
 }
