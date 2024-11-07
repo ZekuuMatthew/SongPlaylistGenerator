@@ -842,7 +842,7 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 20px; /* Adds spacing from the heading */
+    margin-top: 35px; /* Adds spacing from the heading */
 }
 
 .search-input {

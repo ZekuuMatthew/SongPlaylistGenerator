@@ -7,8 +7,7 @@ menu.addEventListener('click', function() {
     menuLinks.classList.toggle('active');
 });
 
-
-// In app.js or a script tag in your HTML
+// Search button click event
 document.querySelector('.search-button').addEventListener('click', function() {
     const query = document.querySelector('.search-input').value;
     if (query) {
@@ -16,5 +15,13 @@ document.querySelector('.search-button').addEventListener('click', function() {
         // Add additional logic to handle the search query here
     } else {
         alert('Please enter a search term.');
+    }
+});
+
+// Trigger search on Enter key press in the search input
+document.querySelector('.search-input').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault(); // Prevent form submission, if any
+        document.querySelector('.search-button').click(); // Simulate button click
     }
 });
