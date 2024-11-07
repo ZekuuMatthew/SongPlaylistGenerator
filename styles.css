@@ -440,6 +440,28 @@ a:hover {
     text-align: center;
 }
 
+/* Add this to your styles.css */
+.services__card h2 {
+    color: #fff; /* Initial color */
+    transition: color 0.3s ease; /* Smooth transition */
+}
+
+
+.services__card:hover h2 {
+    color: #1ED760; /* Green color on hover */
+}
+
+
+.services__card p {
+    color: #fff; /* Initial color for both name and subtitle */
+    transition: color 0.3s ease; /* Smooth transition */
+}
+
+
+.services__card:hover p {
+    color: #1ED760; /* Green color on hover for both elements */
+}
+
 /* Ensure no default image is applied */
 .index-page .services__card {
     background-image: none;
@@ -502,7 +524,7 @@ a:hover {
         to bottom, 
         rgba(0,0,0,0) 0%, 
         rgba(17, 17, 17, 0.6) 100%
-    ), url('/images/juice.webp');
+    ), url('/images/travypatty.webp');
 }
 
 .artists-page .services__card:nth-child(5) {
@@ -510,7 +532,7 @@ a:hover {
         to bottom, 
         rgba(0,0,0,0) 0%, 
         rgba(17, 17, 17, 0.6) 100%
-    ), url('/images/travypatty.webp');
+    ), url('/images/juice.webp');
 }
 
 .artists-page .services__card:nth-child(6) {
@@ -752,4 +774,99 @@ a:hover {
     color: #1ED760;
     font-size: 24px;
     margin: 0 10px;
+}
+
+
+/*  Generate Section  */
+
+.generate-page .main__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh; /* Adjusts vertical height for a balanced center position */
+    text-align: center;
+}
+
+
+.generate-page {
+    background-color: #000; /* Sets the background to black */
+    color: #fff; /* Optional: Sets text color to white */
+}
+
+.generate-page .main__container {
+    min-height: 30vh; /* Ensures it covers the full viewport height */
+}
+
+.generate-page .footer__container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #000; /* Match the page background color */
+    text-align: center;
+    padding: 1rem 0; /* Adjust padding as needed */
+    z-index: 1000; /* Keeps footer above other content */
+}
+
+.generate-page .footer__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff; /* Set the color for logo and text */
+    font-size: 0.5rem; /* Adjust the icon size as needed */
+    font-size: 2.5rem; /* This changes the size of the entire logo container */
+    display: flex;
+    align-items: center;
+}
+
+
+.generate-page #footer__logo {
+    font-size: 1.5rem; /* Ensures "NIKU" text is resized to match */
+}
+
+
+/*  Search Bar  */
+
+/* Center the search container in the main content */
+.generate-page .main__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh; /* Adjusts vertical height for a balanced center position */
+    text-align: center;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px; /* Adds spacing from the heading */
+}
+
+.search-input {
+    width: 500px;
+    padding: 15px 10px;
+    border: 2px solid #1ED760;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    font-size: 16px;
+}
+
+.search-button {
+    padding: 10px 15px;
+    background-color: #1ED760;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 0 4px 4px 0;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-button i {
+    font-size: 34px;
 }
