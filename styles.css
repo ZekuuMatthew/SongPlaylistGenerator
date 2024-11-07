@@ -30,11 +30,7 @@
 }
 
 #navbar__logo {
-<<<<<<< HEAD
-    background-color: #3BB143;
-=======
     background-color: #1db954;
->>>>>>> e0dceeb (Initial commit with all files)
     background-image: linear-gradient(to top, #1DB954 0%, #1DB954 100%);
     background-size: 100%;
     -webkit-background-clip: text;
@@ -512,11 +508,7 @@
 /* Footer CSS */
 .footer__container {
     background-color: #000;
-<<<<<<< HEAD
     padding: 5rem 0;
-=======
-    padding: 4rem 0;
->>>>>>> e0dceeb (Initial commit with all files)
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -529,7 +521,7 @@
     align-items: center;
     cursor: pointer;
     text-decoration: none;
-    font-size: 2rem;
+    font-size: 3rem;
 }
 
 .footer__links {
@@ -547,7 +539,6 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-<<<<<<< HEAD
     margin: 16px;
     text-align: left;
     width: 160px;
@@ -555,15 +546,6 @@
 }
 
 .footer__link--items h2 {
-=======
-    margin: 25px;
-    text-align: left;
-    width: 170px;
-    box-sizing: border-box;
-}
-
-.footer__link--items h2 {   
->>>>>>> e0dceeb (Initial commit with all files)
     margin-bottom: 16px;
 }
 
@@ -574,11 +556,7 @@
 .footer__link--items a {
     color: #fff;
     text-decoration: none;
-<<<<<<< HEAD
     margin-bottom: 0.5rem;
-=======
-    margin-bottom: 0.75rem;
->>>>>>> e0dceeb (Initial commit with all files)
 }
 
 .footer__link--items a:hover {
@@ -687,8 +665,4 @@
     color: #1ED760;
     font-size: 24px;
     margin: 0 10px;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> e0dceeb (Initial commit with all files)
