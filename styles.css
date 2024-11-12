@@ -58,6 +58,28 @@ a:hover {
     margin-right: 0.5rem;
 }
 
+.spotify-button {
+    background: #1db954;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    margin-left: 500px;
+    width: 150px;
+    height: 60px;
+    margin-top: 10px;
+    margin-bottom: 9px;
+}
+
+.spotify-button:hover {
+    background: #000;
+    transition: all 0.3s ease;
+}
+
 .navbar__menu {
     display: flex;
     align-items: center;
@@ -77,6 +99,7 @@ a:hover {
     text-decoration: none;
     padding: 0 1rem;
     height: 100%;
+    font-size: 18px;
 }
 
 .navbar__btn {
@@ -98,12 +121,13 @@ a:hover {
     border: none;
     outline: none;
     border-radius: 4px;
-    background: #3BB143;
+    background: #1db954;
     color: #fff;
+    font-size: 18px;
 }
 
 .button:hover {
-    background: #127a04;
+    background: #000;
     transition: all 0.3s ease;
 }
 
