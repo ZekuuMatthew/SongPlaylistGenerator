@@ -1,7 +1,7 @@
 // Only redirect to Spotify if there's no authorization code in the URL
 
 const clientId = '15d374de17a6473b9bc0fb82c365a519';
-const redirectUri = 'http://127.0.0.1:5500//callback'; // Use your actual callback URI
+const redirectUri = 'http://127.0.0.1:5500/callback'; // Corrected redirect URI
 const scopes = 'playlist-read-private playlist-modify-private';
 
 // Check for authorization code in the URL
@@ -22,9 +22,11 @@ if (authorizationCode) {
     .then(response => response.json())
     .then(data => {
         const accessToken = data.access_token;
-        console.log("Access Token:", accessToken);
+        console.log("Access Token:", accessToken);  // Log the token for debugging
         sessionStorage.setItem('spotifyAccessToken', accessToken); // Store token in sessionStorage
-        // Now you can fetch Spotify data with the token, e.g., display user data or use it for search
+    
+        // Check if the token is stored correctly
+        console.log("Token stored in sessionStorage:", sessionStorage.getItem('spotifyAccessToken'));
     })
     .catch(error => console.error(error));
 }
@@ -41,7 +43,7 @@ document.querySelector('.search-button').addEventListener('click', () => {
     if (searchQuery) {
         searchSongs(searchQuery); // Trigger search on button click
     } else {
-        alert("Please enter a search term!");
+        alert("Please enter your mood or activity!");
     }
 });
 
@@ -52,7 +54,7 @@ document.querySelector('.search-input').addEventListener('keydown', (event) => {
         if (searchQuery) {
             searchSongs(searchQuery); // Trigger search on Enter key press
         } else {
-            alert("Please enter a search term!");
+            alert("Please enter your mood or activity!");
         }
     }
 });
@@ -62,6 +64,7 @@ function searchSongs(searchQuery) {
     const accessToken = sessionStorage.getItem('spotifyAccessToken'); // Retrieve stored token
     if (!accessToken) {
         console.error("Access token not found. User may need to log in.");
+        alert("Please log in to Spotify first.");
         return;
     }
 
@@ -88,6 +91,11 @@ function searchSongs(searchQuery) {
 function displaySongs(songs) {
     const resultContainer = document.querySelector('.search-results');
     resultContainer.innerHTML = ''; // Clear any previous results
+
+    if (songs.length === 0) {
+        resultContainer.innerHTML = '<p>No songs found. Try a different search.</p>';
+        return;
+    }
 
     songs.forEach(song => {
         const songElement = document.createElement('div');
