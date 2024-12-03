@@ -2,67 +2,84 @@ const express = require('express');
 const fetch = require('node-fetch');
 const app = express();
 const cors = require('cors');
-app.use(cors());  // Enable CORS for all requests
-app.use(cors({
-    origin: 'http://127.0.0.1:5500' // Only allow requests from this origin
-}));
-
+app.use(cors({ origin: 'http://127.0.0.1:5500' })); // Update origin as needed
 app.use(express.json());
 
-const clientId = '15d374de17a6473b9bc0fb82c365a519';
-const clientSecret = 'f163eb93862041dfbdd2a5656760a3c4';
+const clientId = '038a2eef7fdc4dc1a7a77ccb200f2b9c'; // Replace with your Client ID
+const clientSecret = 'd13c1bddc3be4362b3290e9f20d7b6e1'; // Replace with your Client Secret
 
-// Endpoint to handle the Spotify token exchange
-app.post('/getAccessToken', async (req, res) => {
-    const { code, redirectUri } = req.body;
-
-    // Exchange the authorization code for an access token
+// Function to fetch Spotify App Access Token
+async function getAppAccessToken() {
     try {
-        const tokenResponse = await fetch('https://accounts.spotify.com/api/token', {
+        const response = await fetch('https://accounts.spotify.com/api/token', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': 'Basic ' + Buffer.from(clientId + ':' + clientSecret).toString('base64')
             },
-            body: new URLSearchParams({
-                grant_type: 'authorization_code',
-                code: code,
-                redirect_uri: redirectUri
-            })
+            body: new URLSearchParams({ grant_type: 'client_credentials' })
         });
 
-        const tokenData = await tokenResponse.json();
-        res.json(tokenData); // Send the access token and other data back to the client
+        const data = await response.json();
+        console.log("Access Token:", data.access_token); // Log the token for debugging
+        return data.access_token;
     } catch (error) {
-        console.error("Error fetching access token:", error);
-        res.status(500).json({ error: "Error exchanging code for access token" });
+        console.error("Error fetching app access token:", error.message);
+        throw new Error("Failed to fetch app access token");
     }
-});
+}
 
-// Endpoint to search Spotify (this handles search queries from the front-end)
-app.post('/searchSongs', async (req, res) => {
-    const { searchQuery, accessToken } = req.body; // Receive search query and access token
+// Endpoint to generate a playlist based on a mood or activity
+app.post('/generatePlaylist', async (req, res) => {
+    const { mood } = req.body;
 
-    // Ensure we have an access token
-    if (!accessToken) {
-        return res.status(400).json({ error: 'Access token is required' });
+    // Validate mood input
+    if (!mood) {
+        console.error("No mood provided in the request");
+        return res.status(400).json({ error: 'Mood or activity is required' });
     }
 
-    // Make a search request to Spotify's API
+    console.log("Received mood:", mood); // Log received mood for debugging
+
     try {
-        const searchResponse = await fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(searchQuery)}&type=track&limit=10`, {
-            headers: {
-                'Authorization': `Bearer ${accessToken}`
-            }
+        // Fetch Spotify access token
+        const accessToken = await getAppAccessToken();
+
+        // Construct Spotify search API URL
+        const searchURL = `https://api.spotify.com/v1/search?q=${encodeURIComponent(mood)}&type=track&limit=50`;
+        console.log("Search URL:", searchURL); // Log the search URL for debugging
+
+        // Make API request to Spotify
+        const searchResponse = await fetch(searchURL, {
+            headers: { 'Authorization': `Bearer ${accessToken}` }
         });
 
         const searchData = await searchResponse.json();
-        res.json(searchData); // Send back the search results to the front-end
+        console.log("Spotify Search Response:", JSON.stringify(searchData, null, 2)); // Log full response for debugging
+
+        // Check if tracks are available in the response
+        if (!searchData.tracks || !searchData.tracks.items || searchData.tracks.items.length === 0) {
+            console.error("No tracks found for the given mood");
+            return res.status(404).json({ error: 'No tracks found for the given mood or activity' });
+        }
+
+        // Extract track details
+        const playlist = searchData.tracks.items.map(track => ({
+            name: track.name,
+            artist: track.artists.map(artist => artist.name).join(', '),
+            url: track.external_urls.spotify
+        }));
+
+        // Send playlist as response
+        res.json({ playlist });
     } catch (error) {
-        console.error("Error searching Spotify:", error);
-        res.status(500).json({ error: "Error searching songs" });
+        console.error("Error generating playlist:", error.message);
+        res.status(500).json({ error: 'Failed to generate playlist' });
     }
 });
 
-// Start the Express server
-app.listen(3001, () => console.log("Server running on port 3001"));
+// Start the server
+const PORT = 3001;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
