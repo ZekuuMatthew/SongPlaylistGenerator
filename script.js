@@ -6,6 +6,10 @@ function generatePlaylist() {
     playlistContainer.innerHTML = "";
     playlistContainer.style.display = "none";
 
+    setTimeout(() => {
+        // Clear the loading message
+        playlistContainer.innerHTML = "";
+
     // Hardcoded playlists
     const happySongs = [
         "Disco - Surf Curse",
@@ -242,6 +246,9 @@ function generatePlaylist() {
         return; // Exit if no valid mood is found
     }
 
+    const list = document.createElement('ul');
+    list.classList.add('playlist');
+
     // Render the playlist
     songsToDisplay.forEach((song, index) => {
         const songElement = document.createElement('div');
@@ -251,5 +258,8 @@ function generatePlaylist() {
     });
 
     // Show the container if there is content
-    playlistContainer.style.display = "block";
+    playlistContainer.appendChild(list); // Append the list to the container
+        playlistContainer.style.display = "block";
+    }, 4000); // Delay of 4000ms (4 seconds)
 }
+
