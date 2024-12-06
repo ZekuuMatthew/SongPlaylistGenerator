@@ -1,0 +1,29 @@
+The purpose of this project is to create a system that generates personalized playlists 
+by analyzing user prompts and leveraging Spotify's audio features. 
+The project aims to enhance the user experience by recommending music that aligns with 
+specific emotions, activities, or scenarios (e.g., "workout," "relax," "sad").
+
+How to set up and run:
+1.) Install software
+    - Node.js (v14 or later): For running the backend server.
+    - Python 3 (v3.8 or later): To execute the recommendationgetter.py script.
+    - pip: For managing Python packages.
+
+2.) Python packages, run these commands(make sure pip is installed):
+    - "npm install"
+    - Spotipy: command is "pip install spotipy" once pip is installed
+    - "pip install flask"
+    - "pip install requests"
+
+3.) ensure every file is properly downloaded and in the right folder
+
+4.) Run server
+    - type "node node.mjs" once everything is set up to start the back end server
+
+5.) Open live server and test our software! (make sure the extension for live server is installed for vscode)
+
+easily modify certain features:
+1.) adjust amount of generated songs, within recommendationgetter...
+    - change x to any number (defualt 30)"limit_per_genre = x  # Number of tracks per genre to fetch"
+    - 
+
